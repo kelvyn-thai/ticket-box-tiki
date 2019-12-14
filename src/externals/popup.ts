@@ -1,1 +1,3 @@
-export const getPopupFactories = () => ({});
+export const getPopupFactories = () => ({
+  maxTicketBuy: () => import("src/routes/bookTicket/bookTicket.popup")
+});

@@ -1,7 +1,8 @@
 import {
   ACTION_FETCHED,
   ACTION_FETCH_FAIL,
-  ACTION_FETCH
+  ACTION_FETCH,
+  ACTION_SELECTED_TICKET
 } from "./tickets.constant";
 import { call, put, takeEvery } from "redux-saga/effects";
 import { apiGetTicketsById } from "./tickets.services";
@@ -13,6 +14,11 @@ export const actionFetched = (payload: any) => ({
 
 export const actionFetchFail = () => ({
   type: ACTION_FETCH_FAIL
+});
+
+export const actionSelectedTicket = (payload: any) => ({
+  type: ACTION_SELECTED_TICKET,
+  payload
 });
 
 function* actionFetchContent(action: { type: string; payload: any }) {

@@ -11,10 +11,6 @@ const Styled = styled.div`
     .logo {
       width: 128px;
       height: 128px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
     }
   }
 `;
@@ -22,7 +18,7 @@ const Styled = styled.div`
 const Loading = (props: IProps) => {
   return (
     <Styled className="loading">
-      <div className="logo">
+      <div className="logo abs-center">
         <img src={`images/logo.png`} alt="" />
       </div>
     </Styled>

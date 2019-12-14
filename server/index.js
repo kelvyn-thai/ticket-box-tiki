@@ -26,17 +26,37 @@ const upload = multer({ storage: storage });
 const randomValueInArray = arr => arr[Math.floor(Math.random() * arr.length)];
 
 const generateTickets = (row = "") => {
+  let details = {};
+  switch (row) {
+    case "A":
+    case "B":
+    case "C":
+    case "D": {
+      details = { type: "Standard", price: "60.000đ", price_float: 60000 };
+      break;
+    }
+    case "E":
+    case "F":
+    case "G":
+    case "H":
+    case "J":
+    case "K": {
+      details = { type: "VIP", price: "90.000đ", price_float: 90000 };
+      break;
+    }
+    default: {
+      details = { type: "Deluxe", price: "110.000đ", price_float: 110000 };
+      break;
+    }
+  }
   return [...Array(12)].map((item, index) => ({
     id: uuidv4(),
     row,
     booked: false,
     user_id: "",
     seat_num: index + 1,
-    details: randomValueInArray([
-      { type: "standard", price: "60.000đ" },
-      { type: "VIP", price: "90.000đ" },
-      { type: "Deluxe", price: "110.000đ" }
-    ])
+    status: randomValueInArray(["unavailable", "normal", "area"]),
+    details
   }));
 };
 
@@ -50,22 +70,28 @@ app.get("/content/:id", (req, res) => {
       id: 1,
       name: "Spider-man: Người nhện xa nhà",
       age_limit: "C13",
-      type: "2D",
-      sub: "Viet name sub"
+      sub: "2D Vietnam sub"
     }
   });
 });
 
 app.get("/content/:id/tickets", (req, res) => {
   // const id = req.params.id;
-  const rows = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K"];
-  let data = [];
+  const rows = ["A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L"];
+  let data = {};
   rows.forEach(row => {
-    data.push(generateTickets(row));
+    data[row] = [...generateTickets(row)];
   });
   return res.json({
     status: 1,
-    data: [...data]
+    data: { ...data }
+  });
+});
+
+app.get("/profile", (req, res) => {
+  res.json({
+    status: 1,
+    data: { id: uuidv4(), full_name: "Jayce Thai" }
   });
 });
 

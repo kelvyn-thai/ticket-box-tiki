@@ -4,6 +4,7 @@ import { actionTogglePopup as togglePopup } from "./popup.actions";
 import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
 import { getPopupFactories } from "src/externals/popup";
+import { breakpoints } from "../utils/styled";
 
 interface IProps {
   popup: any;
@@ -38,7 +39,7 @@ const Popup = (props: IProps) => {
           setLoaded(true);
         })
         .catch((e: any) => {
-          console.log(e)
+          console.log(e);
           setLoaded(false);
         });
     }
@@ -54,7 +55,10 @@ const Popup = (props: IProps) => {
         left: 0,
         right: 0,
         bottom: 0,
-        top: 0
+        top: 0,
+        minWidth: breakpoints.xs,
+        maxWidth: breakpoints.sm,
+        margin: "auto"
       }}
     >
       {loaded ? <Comp.default /> : "something wrong!"}

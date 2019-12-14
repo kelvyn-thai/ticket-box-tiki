@@ -7,6 +7,7 @@ import BookTicket from "./bookTicket";
 import enhanceContent from "./content/content.enhance";
 import Loading from "src/shared/components/loading";
 import ticketsEnhance from "./tickets/tickets.enhance";
+import Popup from "src/shared/popup";
 
 export interface IProps {
   content: any;
@@ -16,10 +17,11 @@ const App = (props: IProps) => {
   return (
     <Styled className={`app`}>
       <Switch>
-        <Route exact path="/book-ticket">
+        <Route exact path="/">
           <BookTicket />
         </Route>
       </Switch>
+      <Popup />
     </Styled>
   );
 };

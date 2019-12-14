@@ -16,7 +16,6 @@ export const StyledFonts = styled.div`
 `;
 
 export const Styled = styled(StyledFonts)`
-  min-width: 320px;
   &.open-popup {
     overflow: hidden;
     max-height: 100vh;
@@ -24,12 +23,22 @@ export const Styled = styled(StyledFonts)`
   }
   * {
     font-family: MavenPro-Regular;
-    color: #2f904f;
+    color: #fff;
     box-sizing: border-box;
     -ms-overflow-style: none;
     scrollbar-width: none;
     &::-webkit-scrollbar {
       display: none;
+    }
+    .btn {
+      background: #189eff;
+      color: #fff;
+      font-family: MavenPro-Bold;
+      font-size: 16px;
+      max-width: 100%;
+      height: 40px;
+      line-height: 40px;
+      border-radius: 4px;
     }
   }
 `;
