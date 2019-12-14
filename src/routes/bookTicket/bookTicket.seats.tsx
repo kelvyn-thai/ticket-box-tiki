@@ -4,6 +4,7 @@ import withTranslate from "src/shared/components/hoc/withTranslate";
 import styled from "styled-components";
 import { ticketsSelector } from "../tickets/tickets.selector";
 import Ticket from "./bookTicket.ticket";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 interface IProps {
   translate: any;
@@ -29,20 +30,26 @@ const Tickets = (props: IProps) => {
   const { data } = useSelector(ticketsSelector);
   const {} = props.translate.bookTicket.tickets;
   return (
-    <Styled className="tickets">
-      <div className="rows">
-        {Object.keys(data).map((row: string, index: any) => (
-          <div className="extra" key={index}>
-            <div className="row">{row}</div>
-            <div className="seats">
-              {data[row].map((ticket: any) => {
-                return <Ticket ticket={ticket} key={ticket.id} />;
-              })}
+    <TransformWrapper>
+      <Styled className="tickets">
+        <div className="rows">
+          {Object.keys(data).map((row: string, index: any) => (
+            <div className="extra" key={index}>
+              <div className="row">{row}</div>
+              <div className="seats">
+                {data[row].map((ticket: any) => {
+                  return (
+                    <TransformComponent>
+                      <Ticket ticket={ticket} key={ticket.id} />
+                    </TransformComponent>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-    </Styled>
+          ))}
+        </div>
+      </Styled>
+    </TransformWrapper>
   );
 };
 
