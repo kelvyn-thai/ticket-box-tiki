@@ -1,4 +1,5 @@
 import { ACTION_FETCHED, ACTION_FETCH_FAIL } from "./content.constant";
+import { formatTimeByHours, formatTimeByDate } from "src/shared/utils";
 
 interface IReducer {
   isFetching: boolean;
@@ -21,11 +22,17 @@ export default (
 ) => {
   switch (action.type) {
     case ACTION_FETCHED: {
+      const { time_start, time_end }: any = action.payload;
       return {
         ...state,
         isFetched: true,
         isFetching: false,
-        data: { ...action.payload }
+        data: {
+          ...action.payload,
+          time_start_formated: formatTimeByHours(time_start),
+          time_end_formated: formatTimeByHours(time_end),
+          show_time_formated: formatTimeByDate(time_start)
+        }
       };
     }
     case ACTION_FETCH_FAIL: {

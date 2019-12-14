@@ -1,5 +1,10 @@
 import { createSelector } from "reselect";
 
+export const ticketsSelector = createSelector(
+  (state: any) => state.tickets,
+  tickets => tickets
+);
+
 // export const detailsTicketsSelector = createSelector(
 //   (state: any) => state.tickets,
 //   tickets => {
@@ -18,7 +23,6 @@ import { createSelector } from "reselect";
 //     return details;
 //   }
 // );
-
 
 // export const rowsTicketsSelector = createSelector(
 //     (state: any) => state.tickets,

@@ -12,12 +12,12 @@ const Styled = styled.div`
     .top .name {
       text-align: center;
       font-family: MavenPro-Bold;
-      font-size: 24px;
-      line-height: 28px;
+      font-size: 20px;
+      line-height: 24px;
       margin: auto;
     }
     .top .back-icon {
-      width: 20px;
+      width: 16px;
     }
     .hook {
       display: flex;

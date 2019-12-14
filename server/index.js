@@ -32,7 +32,12 @@ const generateTickets = (row = "") => {
     case "B":
     case "C":
     case "D": {
-      details = { type: "Standard", price: "60.000đ", price_float: 60000 };
+      details = {
+        type: "Standard",
+        price: "60.000đ",
+        price_float: 60000,
+        currency: "đ"
+      };
       break;
     }
     case "E":
@@ -41,11 +46,21 @@ const generateTickets = (row = "") => {
     case "H":
     case "J":
     case "K": {
-      details = { type: "VIP", price: "90.000đ", price_float: 90000 };
+      details = {
+        type: "VIP",
+        price: "90.000đ",
+        price_float: 90000,
+        currency: "đ"
+      };
       break;
     }
     default: {
-      details = { type: "Deluxe", price: "110.000đ", price_float: 110000 };
+      details = {
+        type: "Deluxe",
+        price: "110.000đ",
+        price_float: 110000,
+        currency: "đ"
+      };
       break;
     }
   }
@@ -70,7 +85,10 @@ app.get("/content/:id", (req, res) => {
       id: 1,
       name: "Spider-man: Người nhện xa nhà",
       age_limit: "C13",
-      sub: "2D Vietnam sub"
+      sub: "2D Vietnam sub",
+      cinema: "CGV Cresent Mall",
+      time_start: (new Date().getTime() + 60 * 60 * 1000) / 1000,
+      time_end: (new Date().getTime() + 3 * 60 * 60 * 1000) / 1000
     }
   });
 });

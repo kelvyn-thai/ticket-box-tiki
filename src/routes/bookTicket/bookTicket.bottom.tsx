@@ -11,12 +11,11 @@ const Styled = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-top: 20px;
+    margin-top: 50px;
     .hook {
       position: relative;
-
       margin-bottom: 20px;
-      padding-left: 40px;
+      padding-left: 30px;
       ::before {
         left: 0;
         content: "";
@@ -54,8 +53,8 @@ const Styled = styled.div`
       }
     }
     .hook .desc {
-      font-size: 16px;
-      line-height: 20px;
+      font-size: 14px;
+      line-height: 18px;
     }
     .seats-types {
       max-width: 50%;

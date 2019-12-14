@@ -2,6 +2,10 @@ import { MAX_TICKET_BUY } from "src/routes/tickets/tickets.constant";
 
 export default {
   bookTicket: {
+    payment: {
+      btnCombo: "Chọn combo",
+      btnPayment: "Thanh toán"
+    },
     popup: {
       maxTicketBuy: `Bạn chỉ có thể  mua tối đa <hilight>${MAX_TICKET_BUY}</hilight> vé!`,
       btnOK: "OK"

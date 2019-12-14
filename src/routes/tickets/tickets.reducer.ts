@@ -9,13 +9,15 @@ interface IReducer {
   isFetched: boolean;
   data: any;
   ticketsSelected: any;
+  total: number;
 }
 
 const initialState: IReducer = {
   isFetching: true,
   isFetched: false,
   data: {},
-  ticketsSelected: {}
+  ticketsSelected: {},
+  total: 0
 };
 
 export default (
@@ -42,8 +44,9 @@ export default (
       };
     }
     case ACTION_SELECTED_TICKET: {
-      const { id } = action.payload;
+      const { id, details } = action.payload;
       let tickets: any = { ...state.ticketsSelected };
+      const price = details.price_float;
       if (!tickets[id]) {
         return {
           ...state,
@@ -52,7 +55,8 @@ export default (
             [id]: {
               ...action.payload
             }
-          }
+          },
+          total: state.total + price
         };
       }
       return {
@@ -64,7 +68,8 @@ export default (
             }
             return object;
           }, {})
-        }
+        },
+        total: state.total - price
       };
     }
     default:

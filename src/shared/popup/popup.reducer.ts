@@ -1,4 +1,4 @@
-import { ACTION_TOGGLE_POPUP } from "./popup.constant";
+import { ACTION_TOGGLE_POPUP, ACTION_CLOSE_POPUP } from "./popup.constant";
 
 export interface IReducer {
   toggle: boolean;
@@ -23,6 +23,12 @@ export default (
       return {
         ...state,
         ...action.payload
+      };
+    }
+    case ACTION_CLOSE_POPUP: {
+      return {
+        ...state,
+        toggle: false
       };
     }
     default:
