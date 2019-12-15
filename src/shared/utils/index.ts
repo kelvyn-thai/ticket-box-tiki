@@ -3,13 +3,13 @@ export const getEnvs = () => ({
 });
 
 export const formatTimeByHours = (
-  time = 0,
+  time: number,
   format = {
     hh: ":",
     mm: ""
   }
 ) => {
-  if (isNaN(time)) {
+  if (!time || isNaN(time) || typeof time !== "number") {
     return `00${format.hh}00${format.mm}`;
   }
   const today = new Date(time * 1000);
@@ -19,13 +19,13 @@ export const formatTimeByHours = (
 };
 
 export const formatTimeByDate = (
-  time = 0,
+  time: number,
   format = {
     dd: "/",
     MM: "/"
   }
 ) => {
-  if (isNaN(time)) {
+  if (!time || isNaN(time) || typeof time !== "number") {
     return `00${format.dd}00${format.MM}00`;
   }
   const today = new Date(time * 1000);
@@ -36,8 +36,8 @@ export const formatTimeByDate = (
 };
 
 export const formatCurrency = (cur: number) => {
-  if (isNaN(cur)) {
-    return `0`;
+  if (!cur || isNaN(cur) || typeof cur !== "number") {
+    return `0 ₫`;
   }
   return new Intl.NumberFormat("vi-VN", {
     style: "currency",

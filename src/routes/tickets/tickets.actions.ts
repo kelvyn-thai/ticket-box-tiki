@@ -4,7 +4,7 @@ import {
   ACTION_FETCH,
   ACTION_SELECTED_TICKET
 } from "./tickets.constant";
-import { call, put, takeEvery } from "redux-saga/effects";
+import { call, put, takeEvery, delay } from "redux-saga/effects";
 import { apiGetTicketsById } from "./tickets.services";
 
 export const actionFetched = (payload: any) => ({
@@ -24,11 +24,11 @@ export const actionSelectedTicket = (payload: any) => ({
 function* actionFetchContent(action: { type: string; payload: any }) {
   try {
     const { data } = yield call(apiGetTicketsById, action.payload.id);
+    yield delay(500);
     if (data.status > 0) {
       yield put(actionFetched(data.data));
     }
   } catch (error) {
-    console.log(error);
     yield put(actionFetchFail());
   }
 }

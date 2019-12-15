@@ -5,6 +5,7 @@ import { breakpoints } from "src/shared/utils/styled";
 import Bottom from "./bookTicket.bottom";
 import Tickets from "./bookTicket.seats";
 import Payment from "./bookTicket.payment";
+import Helmet from "react-helmet";
 
 interface IProps {}
 
@@ -38,6 +39,7 @@ const BookTicket = () => {
 const BookTicketWrapper = (props: IProps) => {
   return (
     <Styled className="book-ticket-wrapper">
+      <Helmet title={`TIKI Ticket Box`} />
       <div className="logo">
         <img src={`images/logo.png`} alt="" />
       </div>

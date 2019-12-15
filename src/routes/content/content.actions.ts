@@ -3,7 +3,7 @@ import {
   ACTION_FETCH_FAIL,
   ACTION_FETCH
 } from "./content.constant";
-import { call, put, takeEvery } from "redux-saga/effects";
+import { call, put, takeEvery, delay } from "redux-saga/effects";
 import { apiGetcontentById } from "./content.services";
 
 export const actionFetched = (payload: any) => ({
@@ -18,11 +18,11 @@ export const actionFetchFail = () => ({
 function* actionFetchContent(action: { type: string; payload: any }) {
   try {
     const { data } = yield call(apiGetcontentById, action.payload.id);
+    yield delay(500);
     if (data.status > 0) {
       yield put(actionFetched(data.data));
     }
   } catch (error) {
-    console.log(error);
     yield put(actionFetchFail());
   }
 }

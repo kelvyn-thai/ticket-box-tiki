@@ -8,7 +8,10 @@ export const ticketsSelector = createSelector(
 
 export const totalTicketsPriceSelector = createSelector(
   (state: any) => ticketsSelector(state),
-  tickets => formatCurrency(tickets.total)
+  tickets => {
+    console.log("curr", formatCurrency(tickets.total));
+    return formatCurrency(tickets.total);
+  }
 );
 
 // export const detailsTicketsSelector = createSelector(
