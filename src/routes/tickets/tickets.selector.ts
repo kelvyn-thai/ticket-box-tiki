@@ -1,8 +1,14 @@
 import { createSelector } from "reselect";
+import { formatCurrency } from "src/shared/utils";
 
 export const ticketsSelector = createSelector(
   (state: any) => state.tickets,
   tickets => tickets
+);
+
+export const totalTicketsPriceSelector = createSelector(
+  (state: any) => ticketsSelector(state),
+  tickets => formatCurrency(tickets.total)
 );
 
 // export const detailsTicketsSelector = createSelector(

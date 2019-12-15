@@ -16,7 +16,7 @@ const Styled = styled.div`
     height: 100vh;
     .book-ticket {
       background: #000;
-      padding: 20px;
+      padding: 2%;
     }
     .logo {
       width: 128px;

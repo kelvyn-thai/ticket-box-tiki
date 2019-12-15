@@ -1,10 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { contentSelector } from "../content/content.selector";
-import { ticketsSelector } from "../tickets/tickets.selector";
-import { formatCurrency } from "src/shared/utils";
+import {
+  ticketsSelector,
+  totalTicketsPriceSelector
+} from "../tickets/tickets.selector";
 import withTranslate from "src/shared/components/hoc/withTranslate";
+import { actionTogglePopup } from "src/shared/popup/popup.actions";
 
 interface IProps {
   translate: any;
@@ -86,8 +89,11 @@ const Payment = (props: IProps) => {
     time_end_formated,
     show_time_formated
   } = useSelector(contentSelector).data;
-  const { total } = useSelector(ticketsSelector);
+  const { ticketsSelected } = useSelector(ticketsSelector);
+  const total = useSelector(totalTicketsPriceSelector);
+  const dispatch = useDispatch();
   const { btnCombo, btnPayment } = props.translate.bookTicket.payment;
+  const disabled = Object.keys(ticketsSelected).length === 0;
   return (
     <Styled className="payment">
       <div className="hook">
@@ -99,12 +105,28 @@ const Payment = (props: IProps) => {
           </p>
         </div>
         <div className="total">
-          <p className="total-price">{formatCurrency(total)}</p>
+          <p className="total-price">{total}</p>
         </div>
       </div>
       <div className="group-btn">
-        <button className="btn">{btnCombo}</button>
-        <button className="btn">{btnPayment}</button>
+        <button className="btn disabled">{btnCombo}</button>
+        <button
+          className={`btn ${disabled ? "disabled" : ""}`}
+          onClick={() =>
+            !disabled
+              ? dispatch(
+                  actionTogglePopup({
+                    toggle: true,
+                    data: {
+                      comp: "payment"
+                    }
+                  })
+                )
+              : false
+          }
+        >
+          {btnPayment}
+        </button>
       </div>
     </Styled>
   );

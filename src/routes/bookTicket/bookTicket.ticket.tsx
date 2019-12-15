@@ -35,16 +35,23 @@ const Styled = styled.div`
     &.selected {
       background: #fff;
       border: unset;
+      position: relative;
     }
     &.area {
       opacity: 0;
       visibility: hidden;
     }
   }
+  &.ticket .selected {
+    font-size: 12px;
+    line-height: 14px;
+    color: #000;
+    font-family: MavenPro-Bold;
+  }
 `;
 
 const Ticket = ({ ticket }: IProps) => {
-  const { id } = ticket;
+  const { id, seat_num } = ticket;
   const dispatch = useDispatch();
   const { ticketsSelected } = useSelector(ticketsSelector);
   const selected = id === ticketsSelected[id]?.id;
@@ -74,7 +81,9 @@ const Ticket = ({ ticket }: IProps) => {
       className={`ticket ${selected ? "selected" : ""} ${
         ticket.status
       } ${ticket.details.type.toLowerCase()}`}
-    ></Styled>
+    >
+      {selected && <p className="selected abs-center">{seat_num}</p>}
+    </Styled>
   );
 };
 

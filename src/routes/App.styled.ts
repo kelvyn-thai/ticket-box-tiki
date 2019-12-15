@@ -39,6 +39,9 @@ export const Styled = styled(StyledFonts)`
       height: 40px;
       line-height: 40px;
       border-radius: 4px;
+      &.disabled {
+        opacity: 0.5;
+      }
     }
   }
 `;

@@ -4,11 +4,13 @@ import configs from "src/configs/configs.reducer";
 import notifications from "src/shared/nofitications/notifications.reducer";
 import content from "src/routes/content/content.reducer";
 import tickets from "src/routes/tickets/tickets.reducer";
+import payment from "src/routes/payment/payment.reducer";
 
 export default combineReducers({
   popup,
   configs,
   notifications,
   content,
-  tickets
+  tickets,
+  payment
 });

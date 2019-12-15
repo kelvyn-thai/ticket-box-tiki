@@ -1,6 +1,17 @@
 import { MAX_TICKET_BUY } from "src/routes/tickets/tickets.constant";
 
 export default {
+  payment: {
+    cinema: "Cinema: ",
+    showTime: "Suất chiếu: ",
+    combo: "Combo: ",
+    seats: "Ghế: ",
+    total: "Total: ",
+    btnCancel: "Cancel",
+    btnPay: "Pay",
+    paymentSuccess: "Payment Success!",
+    btnOK: "OK"
+  },
   bookTicket: {
     payment: {
       btnCombo: "Chọn combo",

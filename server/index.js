@@ -88,7 +88,8 @@ app.get("/content/:id", (req, res) => {
       sub: "2D Vietnam sub",
       cinema: "CGV Cresent Mall",
       time_start: (new Date().getTime() + 60 * 60 * 1000) / 1000,
-      time_end: (new Date().getTime() + 3 * 60 * 60 * 1000) / 1000
+      time_end: (new Date().getTime() + 3 * 60 * 60 * 1000) / 1000,
+      banner_url: `${ENVS.API_DOMAIN}/images/banner.jpg`
     }
   });
 });
@@ -110,6 +111,13 @@ app.get("/profile", (req, res) => {
   res.json({
     status: 1,
     data: { id: uuidv4(), full_name: "Jayce Thai" }
+  });
+});
+
+app.post("/payment-tickets", (req, res) => {
+  res.json({
+    status: 1,
+    data: {}
   });
 });
 
